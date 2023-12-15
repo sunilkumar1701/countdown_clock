@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Countdown</title>
+    <style>
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-image: url(https://c4.wallpaperflare.com/wallpaper/296/291/780/background-tree-tree-wallpaper-preview.jpg);
+            background-size: cover; /* Ensure the background covers the entire viewport */
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 55vh;
+            width: 100vh;
+        }
+        .container {
+            margin: 50px auto;
+            max-width: 80%; /* Adjusted for responsiveness */
+            padding: 20px;
+            width: 100em;
+        }
+
+        h1 {
+         font-size: 40px;
+         color: #be1a1a;
+         margin-bottom: 20px;
+         text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Adjust the values for the glow effect */
+        }
+        #countdown {
+            font-size: 36px;
+            font-weight: bold;
+            color: #000000;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8); /* Adjust the values for the glow effect */
+            animation: glow 1s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            }
+        }
+        
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50; /* Green background color */
+            color: white;
+            text-decoration: none; /* Remove underline from the link */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #09810f; /* Darker green on hover */
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+            }
+
+            h1 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+
+            #countdown {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>New Year Countdown</h1>
+    <div id="countdown"></div>
+</div>
+<div >
+    <a href="./index.html" class="back-button">Go Back</a>
+    <div id="countdown"></div>
+</div>
+
+<script>
+    // Set the date we're counting down to for New Year
+    var countDownDate = new Date("Jan 1, 2024 00:00:00").getTime();
+
+    // Update the countdown every 1 second
+    var x = setInterval(function() {
+        // Get the current date and time
+        var now = new Date().getTime();
+
+        // Calculate the remaining time
+        var distance = countDownDate - now;
+
+        // Calculate days, hours, minutes, and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the countdown
+        document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+        // If the countdown is over, display a message
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "Happy New Year!";
+        }
+    }, 1000);
+</script>
+
+</body>
+</html>
